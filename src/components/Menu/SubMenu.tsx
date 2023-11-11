@@ -2,6 +2,7 @@ import React, { useContext, useState } from 'react';
 import classNames from 'classnames';
 import { MenuContext } from './index';
 import Icon from '../Icon';
+import { CSSTransition } from 'react-transition-group';
 export interface ISubMenuProps {
   index?: string;
   title: string;
@@ -37,13 +38,23 @@ const SubMenu: React.FC<ISubMenuProps> = ({ index, title, className, children })
         console.error("Warning: SubMenu has a child which is not a MenuItem component")
       }
     });
-    return <ul className={className}>{childrenComponent}</ul>
+    return (
+      <CSSTransition
+        in={menuOpen}
+        timeout={300}
+        classNames="zoom-in-top"
+        appear
+        unmountOnExit
+      >
+        <ul className={className}>{childrenComponent}</ul>
+      </CSSTransition>
+    )
   };
   const handleClick = (e: React.MouseEvent) => {
     e.preventDefault();
     setMenuOpen(!menuOpen);
   }
-  let timer: number;
+  let timer: number | NodeJS.Timeout;
   const handleMouse = (e: React.MouseEvent, toggle: boolean) => {
     clearTimeout(timer);
     e.preventDefault();

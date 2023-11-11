@@ -55,7 +55,7 @@
 
   // 子下拉列表项（不包括一级项）
   .antd-submenu {
-    display: none;
+    // display: none;
     list-style: none;
     padding-left: 0;
     white-space: nowrap;
@@ -86,7 +86,7 @@
   }
 
   .antd-submenu.menu-opened {
-    display: block;
+    // display: block;
   }
 }
 
