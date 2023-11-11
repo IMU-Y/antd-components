@@ -1,0 +1,135 @@
+.antd-menu {
+  display: flex;
+  flex-wrap: wrap;
+  padding-left: 0;
+  margin-bottom: 30px;
+  list-style: none;
+  box-shadow: $menu-box-shadow;
+
+  .menu-item {
+    padding: $menu-item-padding-y $menu-item-padding-x;
+    cursor: pointer;
+    transition: $menu-transition;
+
+    &:hover,
+    &:focus {
+      text-decoration: none;
+    }
+
+    &.is-disabled {
+      color: $menu-item-disabled-color;
+      pointer-events: none;
+      cursor: default;
+    }
+
+    &.is-active {
+      color: $menu-item-active-color;
+      border-bottom: $menu-item-active-border-width solid $menu-item-active-color;
+    }
+
+    &:hover {
+      color: $menu-item-active-color;
+    }
+  }
+
+  // 一级菜单 + 二级菜单
+  .submenu-item {
+    position: relative;
+
+    .submenu-title {
+      display: flex;
+      align-items: center;
+    }
+
+    .arrow-icon {
+      transition: transform .25s ease-in-out;
+      margin-left: 3px;
+    }
+
+    &:hover {
+      .arrow-icon {
+        transform: rotate(180deg);
+      }
+    }
+  }
+
+  // 子下拉列表项（不包括一级项）
+  .antd-submenu {
+    display: none;
+    list-style: none;
+    padding-left: 0;
+    white-space: nowrap;
+
+    .menu-item {
+      padding: $menu-item-padding-y $menu-item-padding-x;
+      cursor: pointer;
+      transition: $menu-transition;
+      color: $body-color;
+
+      &.is-active,
+      &:hover {
+        color: $menu-item-active-color !important;
+      }
+    }
+  }
+
+  .antd-submenu.menu-opened {
+    display: block;
+  }
+}
+
+// 水平方向
+.menu-horizontal {
+  border-bottom: $menu-border-width solid $menu-border-color;
+
+  >.menu-item {
+    border-bottom: $menu-item-active-border-width solid transparent;
+  }
+
+  .antd-submenu {
+    position: absolute;
+    background: $white;
+    z-index: 100;
+    top: calc(100% + 8px);
+    left: 0;
+    border: $menu-border-width solid $menu-border-color;
+    box-shadow: $submenu-box-shadow;
+  }
+}
+
+// 垂直方向
+.menu-vertical {
+  flex-direction: column;
+  border-bottom: 0px;
+  border-right: $menu-border-width solid $menu-border-color;
+  width: 120px;
+  margin-left: 5px;
+
+  .menu-item {
+    border-left: $menu-item-active-border-width solid transparent;
+
+    &.is-active,
+    &:hover {
+      border-bottom: 0px;
+      border-left: $menu-item-active-border-width solid $menu-item-active-color;
+    }
+  }
+
+  .antd-submenu {
+    list-style: none;
+    padding-left: 0;
+    white-space: nowrap;
+
+    .menu-item {
+      padding: $menu-item-padding-y $menu-item-padding-x;
+      cursor: pointer;
+      transition: $menu-transition;
+      color: $body-color;
+
+      &.is-active,
+      &:hover {
+        color: $menu-item-active-color;
+      }
+    }
+  }
+}
