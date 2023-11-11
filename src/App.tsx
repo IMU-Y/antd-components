@@ -2,6 +2,11 @@ import Button, { ButtonType, ButtonSize } from './components/Button';
 import Menu from './components/Menu';
 import MenuItem from './components/Menu/MenuItem';
 import SubMenu from './components/Menu/SubMenu';
+import Icon from './components/Icon';
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { fas } from '@fortawesome/free-solid-svg-icons';
+library.add(fas);
+
 function App() {
   return (
     <>
@@ -30,6 +35,7 @@ function App() {
       <Button btnType={ButtonType.Default} size={ButtonSize.Small}>hello</Button>
       <Button btnType={ButtonType.Danger} disabled>禁用</Button>
       <Button btnType={ButtonType.Link} href={'https://www.baidu.com/'}>百度</Button>
+      <Icon icon="coffee" theme='danger' size='lg' />
     </>
   )
 }
