@@ -108,8 +108,7 @@
   .menu-item {
     border-left: $menu-item-active-border-width solid transparent;
 
-    &.is-active,
-    &:hover {
+    &.is-active {
       border-bottom: 0px;
       border-left: $menu-item-active-border-width solid $menu-item-active-color;
     }

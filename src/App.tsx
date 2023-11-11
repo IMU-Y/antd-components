@@ -5,7 +5,7 @@ import SubMenu from './components/Menu/SubMenu';
 function App() {
   return (
     <>
-      <Menu defaultIndex={0} onSelect={(index) => { alert(index) }}>
+      <Menu defaultIndex={'0'} onSelect={(index) => { alert(index) }}>
         <MenuItem>MenuItem0</MenuItem>
         <MenuItem>MenuItem1</MenuItem>
         <SubMenu title='dropdown'>
@@ -15,7 +15,7 @@ function App() {
         </SubMenu>
         <MenuItem>MenuItem3</MenuItem>
       </Menu>
-      <Menu defaultIndex={0} onSelect={(index) => { alert(index) }} mode='vertical'>
+      <Menu defaultIndex={'0'} onSelect={(index) => { alert(index) }} mode='vertical' defaultOpenMenus={['4']}>
         <MenuItem>MenuItem0</MenuItem>
         <MenuItem>MenuItem1</MenuItem>
         <MenuItem>MenuItem2</MenuItem>
