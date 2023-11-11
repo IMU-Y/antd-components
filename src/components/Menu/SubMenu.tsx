@@ -1,6 +1,7 @@
 import React, { useContext, useState } from 'react';
 import classNames from 'classnames';
 import { MenuContext } from './index';
+import Icon from '../Icon';
 export interface ISubMenuProps {
   index?: string;
   title: string;
@@ -14,6 +15,8 @@ const SubMenu: React.FC<ISubMenuProps> = ({ index, title, className, children })
   const [menuOpen, setMenuOpen] = useState<boolean>(isOpened);
   const classes = classNames('menu-item submenu-item', className, {
     'is-active': context.currentActive === index,
+    'is-opened': menuOpen,
+    'is-vertical': context.mode,
   });
 
   // 负责渲染子元素
@@ -46,8 +49,8 @@ const SubMenu: React.FC<ISubMenuProps> = ({ index, title, className, children })
     e.preventDefault();
     timer = setTimeout(() => {
       setMenuOpen(toggle);
-    }, 300)
-  }
+    }, 300);
+  };
   const clickEvents = context.mode === 'vertical' ? {
     onClick: handleClick
   } : {}
@@ -59,6 +62,7 @@ const SubMenu: React.FC<ISubMenuProps> = ({ index, title, className, children })
     <li className={classes} key={index} {...hoverEvents}>
       <div className="submenu-title" onClick={handleClick} {...clickEvents}>
         {title}
+        <Icon icon="angle-down" className="arrow-icon" />
       </div>
       {/* 下拉菜单里面的内容 */}
       {renderChildren()}
