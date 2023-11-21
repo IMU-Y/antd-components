@@ -1,22 +1,41 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import Button, { ButtonType, ButtonSize } from './index';
+import Button, { ButtonType, ButtonSize, IButtonProps } from './index';
 
 const meta: Meta<typeof Button> = {
   component: Button,
+  argTypes: {
+    onClick: {
+      description: 'The on click event handler for the button',
+      action: 'clicked', // 在 Actions panel 显示点击事件
+    }
+  },
+  parameters: {
+    docs: {
+      description: {
+        component: 'This is a general Button component.',
+      },
+    },
+  },
+  tags: ['autodocs'],
 };
 
 export default meta;
 type Story = StoryObj<typeof Button>;
 
 export const defaultButton: Story = {
-  render: () => (
-    <>
-      <Button onClick={() => alert('hello world!')}>Primary</Button>
-      <Button disabled>Primary</Button>
-    </>
-  )
+  render: (args: IButtonProps) => <Button {...args} />,
+  args: {
+    children: 'Button',
+  },
+  parameters: {
+    docs: {
+      description: {
+        story: 'This is a basic usage of the Button component.',
+      },
+    },
+  },
+}
 
-};
 export const buttonWithSize: Story = {
   render: () => (
     <>
