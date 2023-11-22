@@ -1,0 +1,50 @@
+.alert {
+  position: relative;
+  padding: 0.75rem 1.25rem;
+  margin-bottom: 1rem;
+  border: 1px solid rgba(0, 0, 0, 0);
+  border-radius: 0.25rem;
+
+  // 任何同时具有.alert和.is-close类名的元素将会被赋予display: none;属性
+  &.is-close {
+    display: none;
+  }
+
+  .alert-close {
+    display: none;
+  }
+
+  .antd-alert-desc {
+    font-size: .875rem;
+    margin: 0.3rem 0 0;
+  }
+
+  .bold-title {
+    font-weight: 700;
+  }
+
+  .antd-alert-close {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 0.75rem 1.25rem;
+    color: inherit;
+    cursor: pointer;
+  }
+}
+
+.alert-success {
+  @include alert-style($success);
+}
+
+.alert-warning {
+  @include alert-style($warning);
+}
+
+.alert-danger {
+  @include alert-style($danger);
+}
+
+.alert-default {
+  @include alert-style($primary);
+}
