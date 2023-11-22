@@ -4,12 +4,24 @@ import { IMenuItemProps } from './MenuItem';
 type MenuMode = 'horizontal' | 'vertical';
 type SelectCallback = (selectedIndex: string) => void
 export interface IMenuProps {
-  defaultIndex?: string;//默认高亮菜单项
-  mode?: MenuMode;//菜单布局
+  /**
+    * 默认 active 的菜单项的高亮索引值
+  */
+  defaultIndex?: string;
+  /**
+   * 菜单显示类型 横向或者纵向
+   */
+  mode?: MenuMode;
+  /**
+   * 点击菜单项触发的回调函数
+   */
   onSelect?: SelectCallback;
   className?: string;
   style?: React.CSSProperties;
   children?: React.ReactNode;
+  /**
+    * 设置子菜单的默认打开 只在纵向模式下生效
+  */
   defaultOpenMenus?: string[];
 }
 interface IMenuContext {

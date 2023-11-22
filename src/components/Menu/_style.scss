@@ -114,7 +114,7 @@
   flex-direction: column;
   border-bottom: 0px;
   border-right: $menu-border-width solid $menu-border-color;
-  width: 120px;
+  // width: 120px;
   margin-left: 5px;
 
   .menu-item {
@@ -143,6 +143,4 @@
       }
     }
   }
-
-
 }
