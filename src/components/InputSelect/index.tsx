@@ -75,7 +75,7 @@ const InputSelect: React.FC<IInputSelectProps> = (props) => {
   }
   return (
     <div className='antd-input-select'>
-      <Input value={inputValue} onChange={handleChange} {...restProps}></Input>
+      <Input value={inputValue} {...restProps} onChange={handleChange} ></Input>
       {generateDropdown()}
     </div>
   )
