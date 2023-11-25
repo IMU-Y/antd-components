@@ -1,0 +1,31 @@
+.antd-input-select {
+  position: relative;
+}
+
+.antd-dropdown-list {
+  list-style: none;
+  padding-left: 0;
+  border: $menu-border-width solid $menu-border-color;
+  box-shadow: $submenu-box-shadow;
+  width: 100%;
+  background: $white;
+  z-index: 100;
+  position: absolute;
+  top: calc(100% + 5px);
+
+  .antd-dropdown-item {
+    padding: $menu-item-padding-y $menu-item-padding-x;
+    cursor: pointer;
+    transition: $menu-transition;
+    color: $body-color;
+
+    &:hover {
+      color: $menu-item-active-color !important;
+    }
+
+    &.is-active {
+      background: $menu-item-active-color !important;
+      color: $white !important;
+    }
+  }
+}
