@@ -29,9 +29,19 @@ const fruits = [
   { value: 'pear', icon: '🍐' },
   { value: 'watermelon', icon: '🍉' },
   { value: 'grape', icon: '🍇' },
-  { value: 'peach', icon: '🍑' }]
-const fetchDropdownList = (input: string): DataSourceType[] => {
-  return fruits.filter(fruit => fruit.value.includes(input));
+  { value: 'peach', icon: '🍑' }];
+
+const fetchDropdownList = (input: string) => {
+  return fetch(`https://api.github.com/search/users?q=${input}`)
+    .then(res => res.json())
+    .then(({ items }) => {
+      if (items) {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        return items.slice(0, 10).map((item: any) => ({ value: item.login, ...item }))
+      } else {
+        return fruits.filter(fruit => fruit.value.includes(input))
+      }
+    })
 }
 const renderOption = (item: DataSourceType<IFruitsProps>) => {
   return (
