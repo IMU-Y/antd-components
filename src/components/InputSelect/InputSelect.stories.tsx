@@ -9,7 +9,7 @@ const meta: Meta<typeof InputSelect> = {
   parameters: {
     docs: {
       description: {
-        component: '带搜索框的Select，展开后可对选项进行搜索。',
+        component: '带搜索框的Select，展开后可对选项进行搜索。支持 Input 组件的所有属性，支持键盘事件选择。',
       },
     },
   },
@@ -18,6 +18,7 @@ const meta: Meta<typeof InputSelect> = {
 
 export default meta;
 type Story = StoryObj<typeof InputSelect>;
+
 
 interface IFruitsProps {
   value: string;
@@ -31,15 +32,16 @@ const fruits = [
   { value: 'grape', icon: '🍇' },
   { value: 'peach', icon: '🍑' }];
 
+const fetchDataList = (input: string) => {
+  return fruits.filter(fruit => fruit.value.includes(input));
+}
 const fetchDropdownList = (input: string) => {
   return fetch(`https://api.github.com/search/users?q=${input}`)
     .then(res => res.json())
     .then(({ items }) => {
       if (items) {
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        return items.slice(0, 10).map((item: any) => ({ value: item.login, ...item }))
-      } else {
-        return fruits.filter(fruit => fruit.value.includes(input))
+        return items.slice(0, 10).map((item: any) => ({ value: item.login, ...item }));
       }
     })
 }
@@ -51,11 +53,11 @@ const renderOption = (item: DataSourceType<IFruitsProps>) => {
     </div>
   )
 }
+
 export const defaultInputSelect: Story = {
   render: (args: IInputSelectProps) => <InputSelect {...args} />,
   args: {
-    fetchDropdownList: fetchDropdownList,
-    renderOption: renderOption,
+    fetchDropdownList: fetchDataList,
     placeholder: "placeholder",
   },
   parameters: {
@@ -66,4 +68,19 @@ export const defaultInputSelect: Story = {
     },
   },
 }
+
+export const templateInputSelect: Story = {
+  render: () => (
+    <InputSelect renderOption={renderOption} fetchDropdownList={fetchDataList}></InputSelect>
+  )
+}
+
+export const asyncInputSelect: Story = {
+  render: () => (
+    <InputSelect fetchDropdownList={fetchDropdownList}></InputSelect>
+  )
+}
+
 defaultInputSelect.storyName = '基础版 InputSelect';
+templateInputSelect.storyName = '自定义搜索结果模板';
+asyncInputSelect.storyName = '支持异步搜索';

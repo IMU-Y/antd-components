@@ -13,6 +13,13 @@
   position: absolute;
   top: calc(100% + 5px);
 
+  .suggstions-loading-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 75px;
+  }
+
   .antd-dropdown-item {
     padding: $menu-item-padding-y $menu-item-padding-x;
     cursor: pointer;

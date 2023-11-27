@@ -115,7 +115,7 @@ const InputSelect: React.FC<IInputSelectProps> = (props) => {
               <Icon icon="spinner" spin />
             </div>
           }
-          {dropdownList?.map((item, index) => {
+          {!loading && dropdownList?.map((item, index) => {
             const cnames = classNames('antd-dropdown-item', {
               'is-active': index === highlightIndex
             })
