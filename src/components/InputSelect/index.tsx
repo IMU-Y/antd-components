@@ -1,8 +1,10 @@
-import React, { useState, ChangeEvent, ReactElement, useEffect } from 'react';
+import React, { useState, ChangeEvent, ReactElement, useEffect, KeyboardEvent, useRef } from 'react';
 import classNames from 'classnames';
 import Input, { InputProps } from '../Input';
 import Transition from '../Transition';
 import Icon from '../Icon';
+import useClickOutside from '../../hooks/useClickOutside';
+import useDebounce from '../../hooks/useDebounce';
 
 // 使用泛型定义下拉数据结构
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -23,49 +25,82 @@ const InputSelect: React.FC<IInputSelectProps> = (props) => {
   const [dropdownList, setDropdownList] = useState<DataSourceType[]>([]);
   const [highlightIndex, setHighlightIndex] = useState<number>(-1);
   const [loading, setLoading] = useState<boolean>(false);
-
+  const componentRef = useRef<HTMLDivElement>(null);
+  const triggerSearch = useRef(false);
+  const debouncedValue = useDebounce(inputValue, 300);
+  useClickOutside(componentRef, () => {
+    setShowDropdown(false);
+  });
   // 点击item选中下拉项时调用
   const handleSelectedItem = (item: DataSourceType, index: number) => {
     setHighlightIndex(index);
     setInputValue(item.value);
     setShowDropdown(false);
     if (onSelect) {
-      onSelect(item)
+      onSelect(item);
     }
+    triggerSearch.current = false;
   }
   const renderDropdownItem = (item: DataSourceType) => {
     return renderOption ? renderOption(item) : item.value;
   }
-  const getData = (input = inputValue) => {
-    const res = fetchDropdownList(input);
-    if (res instanceof Promise) {
-      try {
-        setLoading(true);
-        res.then(data => {
-          setDropdownList(data);
-          if (data.length > 0) {
-            setShowDropdown(true);
-          }
-        })
-      } finally {
-        setLoading(false);
+  const getData = () => {
+    if (triggerSearch.current && debouncedValue) {
+      const res = fetchDropdownList(debouncedValue);
+      if (res instanceof Promise) {
+        try {
+          setLoading(true);
+          res.then(data => {
+            setDropdownList(data);
+            if (data.length > 0) {
+              setShowDropdown(true);
+            }
+          })
+        } finally {
+          setLoading(false);
+        }
+      } else {
+        setDropdownList(res);
+        if (res.length > 0) {
+          setShowDropdown(true);
+        }
       }
-    } else {
-      setDropdownList(res);
-      if (res.length > 0) {
-        setShowDropdown(true);
-      }
+      setHighlightIndex(-1);
     }
-    setHighlightIndex(-1);
   }
   // 输入框中的值发生变化时调用
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setInputValue(e.target.value);
-    getData(e.target.value);
+    triggerSearch.current = true;
+  }
+  // 键盘事件
+  const handleKeydown = (e: KeyboardEvent<HTMLInputElement>) => {
+    switch (e.keyCode) {
+      // 回车
+      case 13:
+        if (dropdownList[highlightIndex]) {
+          handleSelectedItem(dropdownList[highlightIndex], highlightIndex);
+        }
+        break;
+      // 上
+      case 38:
+        setHighlightIndex(highlightIndex - 1);
+        break;
+      // 下
+      case 40:
+        setHighlightIndex(highlightIndex + 1);
+        break;
+      // esc
+      case 27:
+        setShowDropdown(false)
+        break;
+      default:
+        break;
+    }
   }
   useEffect(() => {
     getData();
-  }, [fetchDropdownList]);
+  }, [debouncedValue, fetchDropdownList]);
 
   const generateDropdown = () => {
     return (
@@ -95,8 +130,8 @@ const InputSelect: React.FC<IInputSelectProps> = (props) => {
     )
   }
   return (
-    <div className='antd-input-select'>
-      <Input value={inputValue} {...restProps} onChange={handleChange} ></Input>
+    <div className='antd-input-select' ref={componentRef}>
+      <Input value={inputValue} {...restProps} onChange={handleChange} onKeyDown={handleKeydown}></Input>
       {generateDropdown()}
     </div>
   )
