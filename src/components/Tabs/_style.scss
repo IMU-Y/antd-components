@@ -1,0 +1,41 @@
+.antd-tabs {
+  .antd-tabs-nav {
+    margin-top: $legend-margin-top;
+    display: flex;
+    flex-wrap: wrap;
+    list-style: none;
+    padding-left: 0;
+    margin-bottom: 0;
+    box-shadow: $menu-box-shadow;
+
+    .tabs-item {
+      padding: $menu-item-padding-y $menu-item-padding-x;
+      cursor: pointer;
+      transition: $menu-transition;
+
+      &:hover,
+      &:focus {
+        text-decoration: none;
+      }
+
+      &.is-disabled {
+        color: $menu-item-disabled-color;
+        pointer-events: none;
+        cursor: default;
+      }
+
+      &.is-active {
+        color: $menu-item-active-color;
+        border-bottom: $menu-item-active-border-width solid $menu-item-active-color;
+      }
+
+      &:hover {
+        color: $menu-item-active-color;
+      }
+    }
+  }
+
+  .antd-tab-panel {
+    margin-top: $legend-margin-top ;
+  }
+}
