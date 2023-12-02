@@ -54,7 +54,7 @@ const renderOption = (item: DataSourceType<IFruitsProps>) => {
   )
 }
 
-export const defaultInputSelect: Story = {
+export const DefaultInputSelect: Story = {
   render: (args: IInputSelectProps) => <InputSelect {...args} />,
   args: {
     fetchDropdownList: fetchDataList,
@@ -69,18 +69,18 @@ export const defaultInputSelect: Story = {
   },
 }
 
-export const templateInputSelect: Story = {
+export const TemplateInputSelect: Story = {
   render: () => (
     <InputSelect renderOption={renderOption} fetchDropdownList={fetchDataList}></InputSelect>
   )
 }
 
-export const asyncInputSelect: Story = {
+export const AsyncInputSelect: Story = {
   render: () => (
     <InputSelect fetchDropdownList={fetchDropdownList}></InputSelect>
   )
 }
 
-defaultInputSelect.storyName = '基础版 InputSelect';
-templateInputSelect.storyName = '自定义搜索结果模板';
-asyncInputSelect.storyName = '支持异步搜索';
+DefaultInputSelect.storyName = '基础版 InputSelect';
+TemplateInputSelect.storyName = '自定义搜索结果模板';
+AsyncInputSelect.storyName = '支持异步搜索';

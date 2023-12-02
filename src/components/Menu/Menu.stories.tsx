@@ -8,7 +8,7 @@ const meta: Meta<typeof Menu> = {
   parameters: {
     docs: {
       description: {
-        component: 'This is a general Menu component.',
+        component: '为网站提供导航功能的菜单。支持横向纵向两种模式，支持下拉菜单。',
       },
     },
   },
@@ -18,7 +18,7 @@ export default meta;
 type Story = StoryObj<typeof Menu>;
 
 // TODO: 待补充 SubMenu 和 MenuItem 的文档类型定义
-export const defaultMenu: Story = {
+export const DefaultMenu: Story = {
   render: (args: IMenuProps) => (
     <Menu {...args} >
       <MenuItem>MenuItem0</MenuItem>
@@ -44,7 +44,7 @@ export const defaultMenu: Story = {
   },
 }
 
-export const verticalMenu: Story = {
+export const VerticalMenu: Story = {
   render: () => (
     <Menu defaultIndex='0' mode='vertical'>
       <MenuItem>MenuItem0</MenuItem>
@@ -59,7 +59,7 @@ export const verticalMenu: Story = {
   )
 }
 
-export const verticalOpenedMenu: Story = {
+export const VerticalOpenedMenu: Story = {
   render: () => (
     <Menu defaultIndex='0' mode='vertical' defaultOpenMenus={['2']}>
       <MenuItem>MenuItem0</MenuItem>
@@ -74,6 +74,6 @@ export const verticalOpenedMenu: Story = {
   )
 }
 
-defaultMenu.storyName = '默认 Menu'
-verticalMenu.storyName = '纵向的 Menu'
-verticalOpenedMenu.storyName = '默认展开的纵向 Menu'
+DefaultMenu.storyName = '默认 Menu'
+VerticalMenu.storyName = '纵向的 Menu'
+VerticalOpenedMenu.storyName = '默认展开的纵向 Menu'

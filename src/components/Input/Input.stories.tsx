@@ -10,7 +10,7 @@ const meta: Meta<typeof Input> = {
   parameters: {
     docs: {
       description: {
-        component: 'This is a general Input component.',
+        component: 'Input 输入框 通过鼠标或键盘输入内容，是最基础的表单域的包装。',
       },
     },
   },
@@ -20,7 +20,7 @@ const meta: Meta<typeof Input> = {
 export default meta;
 type Story = StoryObj<typeof Input>;
 
-export const defaultInput: Story = {
+export const DefaultInput: Story = {
   render: (args: InputProps) => <Input {...args} />,
   args: {
     placeholder: "placeholder",
@@ -34,7 +34,7 @@ export const defaultInput: Story = {
   },
 }
 
-export const disabledInput: Story = {
+export const DisabledInput: Story = {
   render: () => (
     <Input
       disabled
@@ -44,7 +44,7 @@ export const disabledInput: Story = {
   )
 }
 
-export const iconInput: Story = {
+export const IconInput: Story = {
   render: () => (
     <Input
       icon="search"
@@ -56,7 +56,7 @@ export const iconInput: Story = {
   )
 }
 
-export const inputWithSize: Story = {
+export const InputWithSize: Story = {
   render: () => (
     <>
       <Input
@@ -77,7 +77,7 @@ export const inputWithSize: Story = {
   )
 }
 
-export const pandInput: Story = {
+export const PandInput: Story = {
   render: () => (
     <>
       <Input
@@ -93,8 +93,8 @@ export const pandInput: Story = {
   )
 }
 
-defaultInput.storyName = '默认的 Input'
-disabledInput.storyName = '被禁用的 Input'
-iconInput.storyName = '带图标的 Alert'
-inputWithSize.storyName = '大小不同的 Input'
-pandInput.storyName = '带前后缀的 Input'
+DefaultInput.storyName = '默认的 Input'
+DisabledInput.storyName = '被禁用的 Input'
+IconInput.storyName = '带图标的 Alert'
+InputWithSize.storyName = '大小不同的 Input'
+PandInput.storyName = '带前后缀的 Input'

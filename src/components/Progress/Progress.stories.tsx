@@ -8,7 +8,7 @@ const meta: Meta<typeof Progress> = {
   parameters: {
     docs: {
       description: {
-        component: 'This is a general Button component.',
+        component: '展示操作的当前进度。',
       },
     },
   },
@@ -18,7 +18,7 @@ const meta: Meta<typeof Progress> = {
 export default meta;
 type Story = StoryObj<typeof Progress>;
 
-export const defaultProgress: Story = {
+export const DefaultProgress: Story = {
   render: (args: IProgressProps) => <Progress {...args} />,
   args: {
     percent: 30,
@@ -34,7 +34,7 @@ export const defaultProgress: Story = {
     },
   },
 }
-export const progressWithTheme: Story = {
+export const ProgressWithTheme: Story = {
   render: () => (
     <>
       <Progress percent={35} theme='primary' styles={{ width: 200 }}></Progress>
@@ -49,5 +49,5 @@ export const progressWithTheme: Story = {
     </>
   )
 }
-defaultProgress.storyName = '默认 Progress'
-progressWithTheme.storyName = '不同主题的 Progress'
+DefaultProgress.storyName = '默认 Progress'
+ProgressWithTheme.storyName = '不同主题的 Progress'

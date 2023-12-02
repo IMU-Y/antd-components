@@ -12,7 +12,7 @@ const meta: Meta<typeof Button> = {
   parameters: {
     docs: {
       description: {
-        component: 'This is a general Button component.',
+        component: '页面中最常用的的按钮元素，适合于完成特定的交互，支持 HTML button 和 a 链接 的所有属性',
       },
     },
   },
@@ -22,7 +22,7 @@ const meta: Meta<typeof Button> = {
 export default meta;
 type Story = StoryObj<typeof Button>;
 
-export const defaultButton: Story = {
+export const DefaultButton: Story = {
   render: (args: IButtonProps) => <Button {...args} />,
   args: {
     children: 'Button',
@@ -36,7 +36,7 @@ export const defaultButton: Story = {
   },
 }
 
-export const buttonWithSize: Story = {
+export const ButtonWithSize: Story = {
   render: () => (
     <>
       <Button size={ButtonSize.Large}>Large</Button>
@@ -44,7 +44,7 @@ export const buttonWithSize: Story = {
     </>
   )
 }
-export const buttonWithType: Story = {
+export const ButtonWithType: Story = {
   render: () => (
     <>
       <Button btnType={ButtonType.Primary}>Primary</Button>
@@ -54,6 +54,6 @@ export const buttonWithType: Story = {
   )
 }
 
-defaultButton.storyName = '默认 Button'
-buttonWithSize.storyName = '不同尺寸的 Button'
-buttonWithType.storyName = '不同类型的 Button'
+DefaultButton.storyName = '默认 Button'
+ButtonWithSize.storyName = '不同尺寸的 Button'
+ButtonWithType.storyName = '不同类型的 Button'

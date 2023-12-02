@@ -24,7 +24,7 @@ const meta: Meta<typeof Icon> = {
 export default meta;
 type Story = StoryObj<typeof Icon>;
 
-export const defaultIcon: Story = {
+export const DefaultIcon: Story = {
   render: (args: IconProps) => <Icon {...args} />,
   args: {
     icon: "angle-down"
@@ -38,7 +38,7 @@ export const defaultIcon: Story = {
   },
 }
 
-export const buttonWithTheme: Story = {
+export const ButtonWithTheme: Story = {
   render: () => (
     <>
       <Icon icon="check" theme="success" />
@@ -49,7 +49,7 @@ export const buttonWithTheme: Story = {
   )
 }
 
-export const buttonWithSize: Story = {
+export const ButtonWithSize: Story = {
   render: () => (
     <>
       <Icon icon="check" />
@@ -57,7 +57,7 @@ export const buttonWithSize: Story = {
     </>
   )
 }
-export const buttonWithAction: Story = {
+export const ButtonWithAction: Story = {
   render: () => (
     <>
       <Icon icon="spinner" theme="primary" spin />
@@ -66,7 +66,7 @@ export const buttonWithAction: Story = {
   )
 }
 
-defaultIcon.storyName = '默认 Icon 图标'
-buttonWithTheme.storyName = '不同主题的 Icon'
-buttonWithSize.storyName = '不同大小的 Icon'
-buttonWithAction.storyName = '不同行为的 Icon'
+DefaultIcon.storyName = '默认 Icon 图标'
+ButtonWithTheme.storyName = '不同主题的 Icon'
+ButtonWithSize.storyName = '不同大小的 Icon'
+ButtonWithAction.storyName = '不同行为的 Icon'

@@ -1,5 +1,4 @@
 import type { Meta, StoryObj } from '@storybook/react';
-
 import Alert, { AlertType, IAlertProps } from './index';
 
 const meta: Meta<typeof Alert> = {
@@ -10,7 +9,7 @@ const meta: Meta<typeof Alert> = {
   parameters: {
     docs: {
       description: {
-        component: 'This is a general Alert component.',
+        component: '用于页面中展示重要的提示信息。 点击右侧的叉提示自动消失',
       },
     },
   },
@@ -20,7 +19,7 @@ const meta: Meta<typeof Alert> = {
 export default meta;
 type Story = StoryObj<typeof Alert>;
 
-export const defaultAlert: Story = {
+export const DefaultAlert: Story = {
   render: (args: IAlertProps) => <Alert {...args} />,
   args: {
     title: 'this is alert!',
@@ -34,7 +33,7 @@ export const defaultAlert: Story = {
   },
 }
 
-export const alertWithType: Story = {
+export const AlertWithType: Story = {
   render: () => (
     <>
       <Alert type={AlertType.Danger} title='This is danger.'></Alert>
@@ -43,12 +42,12 @@ export const alertWithType: Story = {
     </>
   )
 }
-export const alertWithDesc: Story = {
+export const AlertWithDesc: Story = {
   render: () => (
     <Alert title='标题' description='this is a long description'></Alert>
   )
 }
 
-defaultAlert.storyName = '基本样式 Alert'
-alertWithType.storyName = '不同样式的 Alert'
-alertWithDesc.storyName = '带描述的 Alert'
+DefaultAlert.storyName = '基本样式 Alert'
+AlertWithType.storyName = '不同样式的 Alert'
+AlertWithDesc.storyName = '带描述的 Alert'

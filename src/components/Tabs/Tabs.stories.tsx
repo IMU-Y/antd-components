@@ -7,7 +7,7 @@ const meta: Meta<typeof Tabs> = {
   parameters: {
     docs: {
       description: {
-        component: 'This is a general Tabs component.',
+        component: '选项卡切换组件。 提供平级的区域将大块内容进行收纳和展现，保持界面整洁。',
       },
     },
   },
@@ -16,7 +16,7 @@ const meta: Meta<typeof Tabs> = {
 export default meta;
 type Story = StoryObj<typeof Tabs>;
 
-export const defaultTabs: Story = {
+export const DefaultTabs: Story = {
   render: (args: ITabsProps) => (
     <Tabs {...args} >
       <TabItem label='Tab1'><p>Tab1 content</p></TabItem>
@@ -37,4 +37,4 @@ export const defaultTabs: Story = {
   },
 }
 
-defaultTabs.storyName = '默认 Tabs'
+DefaultTabs.storyName = '默认 Tabs'

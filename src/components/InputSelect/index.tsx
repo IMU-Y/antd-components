@@ -1,4 +1,4 @@
-import React, { useState, ChangeEvent, ReactElement, useEffect, KeyboardEvent, useRef } from 'react';
+import React, { useState, ChangeEvent, ReactElement, useEffect, KeyboardEvent, useRef, useCallback } from 'react';
 import classNames from 'classnames';
 import Input, { InputProps } from '../Input';
 import Transition from '../Transition';
@@ -44,7 +44,7 @@ const InputSelect: React.FC<IInputSelectProps> = (props) => {
   const renderDropdownItem = (item: DataSourceType) => {
     return renderOption ? renderOption(item) : item.value;
   }
-  const getData = () => {
+  const getData = useCallback(() => {
     if (triggerSearch.current && debouncedValue) {
       const res = fetchDropdownList(debouncedValue);
       if (res instanceof Promise) {
@@ -67,7 +67,7 @@ const InputSelect: React.FC<IInputSelectProps> = (props) => {
       }
       setHighlightIndex(-1);
     }
-  }
+  }, [debouncedValue, fetchDropdownList])
   // 输入框中的值发生变化时调用
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setInputValue(e.target.value);
@@ -100,7 +100,7 @@ const InputSelect: React.FC<IInputSelectProps> = (props) => {
   }
   useEffect(() => {
     getData();
-  }, [debouncedValue, fetchDropdownList]);
+  }, [getData]);
 
   const generateDropdown = () => {
     return (
