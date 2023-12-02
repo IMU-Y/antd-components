@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react';
 import classNames from 'classnames';
-import { MenuContext } from './index';
+import { MenuContext } from './Menu';
 import Icon from '../Icon';
 import Transition from '../Transition';
 export interface ISubMenuProps {
@@ -12,7 +12,7 @@ export interface ISubMenuProps {
 const SubMenu: React.FC<ISubMenuProps> = ({ index, title, className, children }) => {
   const context = useContext(MenuContext);
   const openedSubMenus = context.defaultOpenMenus as Array<string>;
-  const isOpened = (index && context.mode === 'vertical') ? openedSubMenus.includes(index) : false;
+  const isOpened = (index && context.mode === 'vertical') ? openedSubMenus.indexOf(index) !== -1 : false;
   const [menuOpen, setMenuOpen] = useState<boolean>(isOpened);
   const classes = classNames('menu-item submenu-item', className, {
     'is-active': context.currentActive === index,
@@ -27,7 +27,8 @@ const SubMenu: React.FC<ISubMenuProps> = ({ index, title, className, children })
     });
     // 遍历所有children元素
     const childrenComponent = React.Children.map(children, (child, i) => {
-      const childElement = child as React.FunctionComponentElement<ISubMenuProps>;
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const childElement = child as any;
       const { name } = childElement.type;
       // 判断SubMenu中只能有MenuItem
       if (name === 'MenuItem') {
@@ -52,7 +53,8 @@ const SubMenu: React.FC<ISubMenuProps> = ({ index, title, className, children })
     e.preventDefault();
     setMenuOpen(!menuOpen);
   }
-  let timer: number | NodeJS.Timeout;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  let timer: any;
   const handleMouse = (e: React.MouseEvent, toggle: boolean) => {
     clearTimeout(timer);
     e.preventDefault();

@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import Menu, { IMenuProps } from './index';
+import Menu, { IMenuProps } from './Menu';
 import MenuItem from './MenuItem';
 import SubMenu from './SubMenu';
 const meta: Meta<typeof Menu> = {
