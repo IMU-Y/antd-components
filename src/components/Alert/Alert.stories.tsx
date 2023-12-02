@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import Alert, { AlertType, IAlertProps } from './index';
+import Alert from './index';
+import type { IAlertProps } from './index';
 
 const meta: Meta<typeof Alert> = {
   component: Alert,
@@ -36,9 +37,9 @@ export const DefaultAlert: Story = {
 export const AlertWithType: Story = {
   render: () => (
     <>
-      <Alert type={AlertType.Danger} title='This is danger.'></Alert>
-      <Alert type={AlertType.Success} title='This is success.'></Alert>
-      <Alert type={AlertType.Warning} title='This is warning.' closeable></Alert>
+      <Alert type='danger' title='This is danger.'></Alert>
+      <Alert type='success' title='This is success.'></Alert>
+      <Alert type='warning' title='This is warning.' closeable></Alert>
     </>
   )
 }

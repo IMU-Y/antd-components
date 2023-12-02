@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import Button, { ButtonType, ButtonSize, IButtonProps } from './index';
+import Button from './index';
+import type { IButtonProps } from './index';
 
 const meta: Meta<typeof Button> = {
   component: Button,
@@ -39,17 +40,17 @@ export const DefaultButton: Story = {
 export const ButtonWithSize: Story = {
   render: () => (
     <>
-      <Button size={ButtonSize.Large}>Large</Button>
-      <Button size={ButtonSize.Small}>Small</Button>
+      <Button size='lg'>Large</Button>
+      <Button size='sm'>Small</Button>
     </>
   )
 }
 export const ButtonWithType: Story = {
   render: () => (
     <>
-      <Button btnType={ButtonType.Primary}>Primary</Button>
-      <Button btnType={ButtonType.Danger} >Danger</Button>
-      <Button btnType={ButtonType.Link} href={'https://www.baidu.com/'}>百度</Button>
+      <Button btnType='primary'>Primary</Button>
+      <Button btnType='danger'>Danger</Button>
+      <Button btnType='link' href={'https://www.baidu.com/'}>百度</Button>
     </>
   )
 }

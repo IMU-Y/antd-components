@@ -1,16 +1,5 @@
 import React, { AnchorHTMLAttributes, ButtonHTMLAttributes } from 'react';
 import classnames from "classnames";
-
-export enum ButtonSize {
-  Large = 'lg',
-  Small = 'sm',
-}
-export enum ButtonType {
-  Primary = 'primary',
-  Default = 'default',
-  Danger = 'danger',
-  Link = 'link',
-}
 interface BaseButtonProps {
   className?: string;
   /**
@@ -20,11 +9,11 @@ interface BaseButtonProps {
   /**
     * 设置 Button 的大小
   */
-  size?: ButtonSize;
+  size?: 'lg' | 'sm';
   /**
     * 设置 Button 的类型
   */
-  btnType?: ButtonType;
+  btnType?: 'primary' | 'default' | 'danger' | 'link';
   children?: React.ReactNode;
   href?: string;
 }
@@ -37,9 +26,9 @@ const Button: React.FC<IButtonProps> = (props) => {
   const classes = classnames('btn', className, {
     [`btn-${btnType}`]: btnType,
     [`btn-${size}`]: size,
-    'disabled': (btnType === ButtonType.Link) && disabled,
+    'disabled': (btnType === 'link') && disabled,
   });
-  if (btnType === ButtonType.Link && href) {
+  if (btnType === 'link' && href) {
     return (
       <a className={classes} href={href} {...restProps}>{children}</a>
     )
@@ -52,7 +41,7 @@ const Button: React.FC<IButtonProps> = (props) => {
 
 Button.defaultProps = {
   disabled: false,
-  btnType: ButtonType.Default,
+  btnType: 'default',
 }
 
 export default Button;
