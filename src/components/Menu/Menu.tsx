@@ -56,13 +56,14 @@ const Menu: React.FC<IMenuProps> = (props) => {
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       const childElement = child as any;
       const { name } = childElement.type;
-      if (name === 'MenuItem' || name === 'SubMenu') {
-        return React.cloneElement(childElement, {
-          index: index.toString(),
-        })
-      } else {
-        console.error("Warning: Menu has a child which is not a MenuItem component")
-      }
+      console.log(name, '1');
+      // if (name === 'MenuItem' || name === 'SubMenu') {
+      return React.cloneElement(childElement, {
+        index: index.toString(),
+      })
+      // } else {
+      //   console.error("Warning: Menu has a child which is not a MenuItem component")
+      // }
     })
   }
   return (

@@ -30,14 +30,15 @@ const SubMenu: React.FC<ISubMenuProps> = ({ index, title, className, children })
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       const childElement = child as any;
       const { name } = childElement.type;
+      console.log(name, 'name');
       // 判断SubMenu中只能有MenuItem
-      if (name === 'MenuItem') {
-        return React.cloneElement(childElement, {
-          index: `${index}-${i}`
-        });
-      } else {
-        console.error("Warning: SubMenu has a child which is not a MenuItem component")
-      }
+      // if (name === 'MenuItem') {
+      return React.cloneElement(childElement, {
+        index: `${index}-${i}`
+      });
+      // } else {
+      //   console.error("Warning: SubMenu has a child which is not a MenuItem component")
+      // }
     });
     return (
       <Transition
